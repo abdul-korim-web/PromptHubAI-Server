@@ -25,7 +25,7 @@ export const checkCreatorLogin = async(req,res,next)=>{
      next()
 
     } catch (error) {
-        res.status(404).json({success:false,message:"au fa"})
+        res.status(404).json({success:false,message:"authentication fail"})
         next(error)
     }
 }

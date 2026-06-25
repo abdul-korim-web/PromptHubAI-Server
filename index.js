@@ -1,10 +1,11 @@
 import express from "express"
 import dotenv from "dotenv"
-
+import cors from "cors"
 import { databaseConnection } from "./src/config/db.js"
 import { promptRoute } from "./src/routes/promptRoute.js"
 dotenv.config()
 const app = express()
+app.use(cors())
 app.use(express.json())
 // database connection
 databaseConnection()
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
 
 
 
-app.use("/prompt",promptRoute)
+app.use("/creator/prompt",promptRoute)
 
 
 
