@@ -3,6 +3,7 @@ import { createpromptControler } from "../controlers/promptControlers/createprom
 import { getCreatorPromptsController } from "../controlers/promptControlers/getCreatorPromptsControler.js"
 import { checkCreatorLogin } from './../middleware/creator/creatorLoginCheck.js';
 import { creatorDeletePromptController } from './../controlers/promptControlers/creatorDeletePromptControler.js';
+import { editCreatorPromptController } from "../controlers/promptControlers/editCreatorPromptControler.js";
 
 
 
@@ -15,3 +16,5 @@ promptRoute.get("/",checkCreatorLogin,getCreatorPromptsController)
 promptRoute.post(`/`,checkCreatorLogin,createpromptControler)
 // delete creator promptRoute
 promptRoute.delete("/:promptId",checkCreatorLogin,creatorDeletePromptController)
+// edit creator prompt
+promptRoute.patch("/:promptId",checkCreatorLogin,editCreatorPromptController)
