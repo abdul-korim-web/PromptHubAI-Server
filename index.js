@@ -3,6 +3,10 @@ import dotenv from "dotenv"
 import cors from "cors"
 import { databaseConnection } from "./src/config/db.js"
 import { promptRoute } from "./src/routes/promptRoute.js"
+import { getUserInfoController } from "./src/controlers/getUserInfoControler.js"
+import { checkCreatorLogin } from "./src/middleware/creator/creatorLoginCheck.js"
+import { getAllPromptsControler } from "./src/controlers/getAllPromptsControler.js"
+import { getSinglePromptControler } from "./src/controlers/getSinglePromptControler.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -15,8 +19,9 @@ app.get("/", (req, res) => {
 });
 
 
-
-
+app.get("/me",checkCreatorLogin,getUserInfoController)
+app.get("/allprompts",getAllPromptsControler)
+app.get("/prompt/:promptId",getSinglePromptControler)
 app.use("/creator/prompt",promptRoute)
 
 

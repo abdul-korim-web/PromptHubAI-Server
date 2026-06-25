@@ -16,5 +16,6 @@ promptRoute.get("/",checkCreatorLogin,getCreatorPromptsController)
 promptRoute.post(`/`,checkCreatorLogin,createpromptControler)
 // delete creator promptRoute
 promptRoute.delete("/:promptId",checkCreatorLogin,creatorDeletePromptController)
+
 // edit creator prompt
 promptRoute.patch("/:promptId",checkCreatorLogin,editCreatorPromptController)
