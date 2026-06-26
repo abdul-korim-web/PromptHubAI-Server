@@ -1,4 +1,4 @@
-import express from "express"
+import express, { text } from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import { databaseConnection } from "./src/config/db.js"
@@ -7,6 +7,7 @@ import { getUserInfoController } from "./src/controlers/getUserInfoControler.js"
 import { checkCreatorLogin } from "./src/middleware/creator/creatorLoginCheck.js"
 import { getAllPromptsControler } from "./src/controlers/getAllPromptsControler.js"
 import { getSinglePromptControler } from "./src/controlers/getSinglePromptControler.js"
+import { User } from "./src/schemas/userSchema.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -19,12 +20,19 @@ app.get("/", (req, res) => {
 });
 
 
+app.use("/creator/prompt",promptRoute)
 app.get("/me",checkCreatorLogin,getUserInfoController)
 app.get("/allprompts",getAllPromptsControler)
 app.get("/prompt/:promptId",getSinglePromptControler)
-app.use("/creator/prompt",promptRoute)
 
-
+app.get(`/user`,async(req,res,next)=>{
+    try {
+        const totalUser= await User.find()
+        res.status(200).json({success:true,totalUser})
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 // global error handeling 
