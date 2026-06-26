@@ -8,6 +8,7 @@ import { checkCreatorLogin } from "./src/middleware/creator/creatorLoginCheck.js
 import { getAllPromptsControler } from "./src/controlers/getAllPromptsControler.js"
 import { getSinglePromptControler } from "./src/controlers/getSinglePromptControler.js"
 import { User } from "./src/schemas/userSchema.js"
+import { addPromptCommentControler } from "./src/controlers/addPromptCommentControler.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -24,6 +25,7 @@ app.use("/creator/prompt",promptRoute)
 app.get("/me",checkCreatorLogin,getUserInfoController)
 app.get("/allprompts",getAllPromptsControler)
 app.get("/prompt/:promptId",getSinglePromptControler)
+app.post("/prompt/comment",checkCreatorLogin,addPromptCommentControler)
 
 app.get(`/user`,async(req,res,next)=>{
     try {
