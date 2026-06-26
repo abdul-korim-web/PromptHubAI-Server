@@ -9,6 +9,7 @@ import { getAllPromptsControler } from "./src/controlers/getAllPromptsControler.
 import { getSinglePromptControler } from "./src/controlers/getSinglePromptControler.js"
 import { User } from "./src/schemas/userSchema.js"
 import { addPromptCommentControler } from "./src/controlers/addPromptCommentControler.js"
+import getPromptCommentCopntroler from "./src/controlers/getPromptCommentCopntroler.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -26,6 +27,7 @@ app.get("/me",checkCreatorLogin,getUserInfoController)
 app.get("/allprompts",getAllPromptsControler)
 app.get("/prompt/:promptId",getSinglePromptControler)
 app.post("/prompt/comment",checkCreatorLogin,addPromptCommentControler)
+app.get("/prompt/comment/:promptId",checkCreatorLogin,getPromptCommentCopntroler)
 
 app.get(`/user`,async(req,res,next)=>{
     try {
