@@ -5,6 +5,7 @@ import { checkCreatorLogin } from './../middleware/creator/creatorLoginCheck.js'
 import { creatorDeletePromptController } from './../controlers/promptControlers/creatorDeletePromptControler.js';
 import { editCreatorPromptController } from "../controlers/promptControlers/editCreatorPromptControler.js";
 import { saveBookMarkControler } from "../controlers/saveBookMarkControler.js";
+import { incrimentCopyPromptControler } from "../controlers/incrimentCopyPromptControler.js";
 
 
 
@@ -15,8 +16,11 @@ export const promptRoute = express.Router()
 promptRoute.get("/",checkCreatorLogin,getCreatorPromptsController)
 // create a single prompt (creator)
 promptRoute.post(`/`,checkCreatorLogin,createpromptControler)
+// incriment copy prompt 
+promptRoute.patch("/copy/:promptId",incrimentCopyPromptControler)
 // delete creator promptRoute
 promptRoute.delete("/:promptId",checkCreatorLogin,creatorDeletePromptController)
+
 //  save bookmark post 
 promptRoute.patch("/bookmark/:promptId",checkCreatorLogin,saveBookMarkControler)
 

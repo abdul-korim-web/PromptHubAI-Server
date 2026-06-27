@@ -48,6 +48,11 @@ const promptsSchema = new mongoose.Schema(
       enum: ["public", "private"],
       default: "public",
     },
+    totalCopy:{
+      type:Number,
+      requireed:false,
+      default:0
+    }
   },
   { timestamps: true }
 );
