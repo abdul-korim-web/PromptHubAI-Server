@@ -11,6 +11,7 @@ import { User } from "./src/schemas/userSchema.js"
 import { addPromptCommentControler } from "./src/controlers/addPromptCommentControler.js"
 import getPromptCommentCopntroler from "./src/controlers/getPromptCommentCopntroler.js"
 import { getSavePromptControler } from "./src/controlers/getSavePromptControler.js"
+import { paymentRoute } from "./src/routes/paymentRoute.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -22,7 +23,7 @@ app.get("/", (req, res) => {
 
 });
 
-
+app.use("/payment",paymentRoute)
 app.get("/prompt/savepost",checkCreatorLogin,getSavePromptControler)
 app.use("/creator/prompt",promptRoute)
 app.get("/me",checkCreatorLogin,getUserInfoController)
