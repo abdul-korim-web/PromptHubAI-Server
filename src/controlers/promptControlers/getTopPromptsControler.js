@@ -3,7 +3,7 @@ import Prompts from "../../schemas/promptsSchema.js";
 export const getTopPromptsControler = async(req,res,next)=>{
     try {
 
-    const prompts = await Prompts.find()
+    const prompts = await Prompts.find({status:"approved"})
       .sort({ createdAt: -1 })
       .limit(6);
 

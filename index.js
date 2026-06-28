@@ -12,6 +12,8 @@ import { addPromptCommentControler } from "./src/controlers/addPromptCommentCont
 import getPromptCommentCopntroler from "./src/controlers/getPromptCommentCopntroler.js"
 import { getSavePromptControler } from "./src/controlers/getSavePromptControler.js"
 import { paymentRoute } from "./src/routes/paymentRoute.js"
+import { adminApprovedPromptControler } from "./src/controlers/admin/adminApprovedPromptControler.js"
+import { deletePromptController } from "./src/controlers/admin/deletePromptController.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -22,7 +24,10 @@ app.get("/", (req, res) => {
     res.status(200).json({success:true,message:"API is running perfectly! 🚀"})
 
 });
-
+// admin approved prompts
+app.patch("/admin/prompt/status/:id",adminApprovedPromptControler)
+// delete prompt 
+app.delete("/admin/prompt/:id",deletePromptController)
 app.use("/payment",paymentRoute)
 app.get("/prompt/savepost",checkCreatorLogin,getSavePromptControler)
 app.use("/creator/prompt",promptRoute)

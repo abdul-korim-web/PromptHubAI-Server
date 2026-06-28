@@ -31,6 +31,11 @@ const promptsSchema = new mongoose.Schema(
       required: true,
       enum: ["marketing", "coding", "design", "writing"],
     },
+    status:{
+      type:String,
+      default:"pending",
+      enum:["pending","approved","rejected"]
+    },
     aiTool: {
       type: String,
       required: true,
