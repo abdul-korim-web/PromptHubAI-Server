@@ -6,6 +6,7 @@ import { creatorDeletePromptController } from './../controlers/promptControlers/
 import { editCreatorPromptController } from "../controlers/promptControlers/editCreatorPromptControler.js";
 import { saveBookMarkControler } from "../controlers/saveBookMarkControler.js";
 import { incrimentCopyPromptControler } from "../controlers/incrimentCopyPromptControler.js";
+import { getTopPromptsControler } from "../controlers/promptControlers/getTopPromptsControler.js";
 
 
 
@@ -16,6 +17,8 @@ export const promptRoute = express.Router()
 promptRoute.get("/",checkCreatorLogin,getCreatorPromptsController)
 // create a single prompt (creator)
 promptRoute.post(`/`,checkCreatorLogin,createpromptControler)
+// get top 6 data 
+promptRoute.get("/topprompts",getTopPromptsControler)
 // incriment copy prompt 
 promptRoute.patch("/copy/:promptId",incrimentCopyPromptControler)
 // delete creator promptRoute
