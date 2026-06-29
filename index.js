@@ -14,6 +14,7 @@ import { getSavePromptControler } from "./src/controlers/getSavePromptControler.
 import { paymentRoute } from "./src/routes/paymentRoute.js"
 import { adminApprovedPromptControler } from "./src/controlers/admin/adminApprovedPromptControler.js"
 import { deletePromptController } from "./src/controlers/admin/deletePromptController.js"
+import { adminGetAllPromptsControler } from "./src/controlers/promptControlers/adminGetAllPromptsControler.js"
 dotenv.config()
 const app = express()
 app.use(cors())
@@ -28,6 +29,8 @@ app.get("/", (req, res) => {
 app.patch("/admin/prompt/status/:id",adminApprovedPromptControler)
 // delete prompt 
 app.delete("/admin/prompt/:id",deletePromptController)
+// admin get all prompt 
+app.get("/admin/prompt/get",adminGetAllPromptsControler)
 app.use("/payment",paymentRoute)
 app.get("/prompt/savepost",checkCreatorLogin,getSavePromptControler)
 app.use("/creator/prompt",promptRoute)
