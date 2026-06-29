@@ -19,7 +19,7 @@ console.log('req.payload', req.payload)
         const userPlan = userPayload.plan;
 
  
-        if (userRole === "user" && userPlan === "Free") {
+        if (userRole === "user" && userPlan === "free") {
     
             const existingPromptsCount = await Prompts.countDocuments({ creator: creatorId });
             console.log('existingPromptsCount', existingPromptsCount)
